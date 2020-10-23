@@ -30,11 +30,11 @@ int main()
 		dup(pipefd[0]);
 		close(pipefd[0]);
 		
+        execlp("wc", "wc", nullptr);
+
 		//child reads
 		// ssize_t nr = read(0,  buffer, sizeof(buffer));
 		// write(1, buffer, nr);
-
-        execl("wc", "wc", nullptr);
 	} else
 	{
 		//parent or error
@@ -45,15 +45,14 @@ int main()
 		dup(pipefd[1]);
 		close(pipefd[1]);
 		
-		
+		execlp("ls", "ls", nullptr);
+        wait(nullptr); //wait for child to finish.
+
 		//parent writes
 		//write(1, "Hello", 6);
 		//now that the pipe is using standard output, you can use cout into pipe.
 		// cout << "Caffeine is better than... zzzzzzzzz" << endl;
 		// wait(nullptr);
-
-        execlp("wc", "wc", nullptr);
-        wait(nullptr); //wait for child to finish.
 	}
 	
 	
