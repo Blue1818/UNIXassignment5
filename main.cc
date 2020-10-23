@@ -78,7 +78,7 @@ bool parseCmd(string* cmds, string bulk)
 {
     //make last one nullptr.
     istringstream stream;
-
+    string temp = "";
     stream.str(bulk);
     int counter = 1;
 
@@ -89,7 +89,8 @@ bool parseCmd(string* cmds, string bulk)
 
     for(int i = 0; i < counter; i++)
     {
-        stream << cmds[i];
+        stream >> temp;
+        cmds[i] = temp;
     }
 
 
