@@ -1,12 +1,20 @@
 #include <iostream>
 #include <sys/types.h>
 #include <unistd.h>
-#include <sys/wait.h> //wait
+#include <sys/wait.h>
 using namespace std;
+
+void parseCmd(string*, string);
 
 int main()
 {
-	cout << "Before pipe\n";
+	string cmd1[25];
+    string cmd2[25];
+
+    cout << "command1? ";
+    cin >> cmd1[0];
+    cout << "command1? ";
+    cin >> cmd2[0];
 	
 	int pipefd[2];
 	int rs;
@@ -31,10 +39,6 @@ int main()
 		close(pipefd[0]);
 		
         execlp("wc", "wc", nullptr);
-
-		//child reads
-		// ssize_t nr = read(0,  buffer, sizeof(buffer));
-		// write(1, buffer, nr);
 	} else
 	{
 		//parent or error
@@ -47,15 +51,14 @@ int main()
 		
 		execlp("ls", "ls", nullptr);
         wait(nullptr); //wait for child to finish.
-
-		//parent writes
-		//write(1, "Hello", 6);
-		//now that the pipe is using standard output, you can use cout into pipe.
-		// cout << "Caffeine is better than... zzzzzzzzz" << endl;
-		// wait(nullptr);
 	}
 	
 	
 	
 	return 0;
+}
+
+void parseCmd(string* cmds, string bulk)
+{
+
 }
