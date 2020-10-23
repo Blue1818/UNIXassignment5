@@ -2,6 +2,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <stdio.h>
+#include <string.h>
 using namespace std;
 
 //returns false if array contains quit
@@ -81,7 +83,7 @@ bool parseCmd(string* cmds, string bulk)
     pch = strtok (bulk," ");
     while (pch != NULL)
     {
-        pch = cmds[counter];
+        cmds[counter] = pch;
         pch = strtok (NULL, " ");
         counter++;
     }
