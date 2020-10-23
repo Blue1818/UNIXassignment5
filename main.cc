@@ -29,7 +29,7 @@ int main()
         return 0;
     }
 
-    cout << cmd1[0] << cmd1[1] << endl;
+    for(int i = 0; i < 25; i++) cout << cmd2 << endl;
     return 0;
 	
 	/* rs = pipe(pipefd);
@@ -92,9 +92,13 @@ bool parseCmd(string* cmds, string bulk)
         stream >> temp;
         cmds[i] = temp;
     }
+    cmds[counter+1] = nullptr;
 
-
-
+    //if quit is any of the commands, return false;
+    for(int i = 0; i < counter; i++)
+    {
+        if (cmds[i] == "quit") return false;
+    }
 
     return true;
 }
