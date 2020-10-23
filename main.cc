@@ -27,7 +27,7 @@ int main()
         return 0;
     }
 
-    cout << cmd1[0] << endl
+    cout << cmd1[0] << cmd1[1] << endl;
     return 0;
 	
 	rs = pipe(pipefd);
@@ -76,11 +76,14 @@ bool parseCmd(string* cmds, string bulk)
     //make last one nullptr.
     //string temp = "";
     char * pch;
-    pch = strtok (str," ");
+    int counter = 0;
+
+    pch = strtok (bulk," ");
     while (pch != NULL)
     {
-        printf ("%s\n",pch);
+        pch = cmds[counter];
         pch = strtok (NULL, " ");
+        counter++;
     }
 
     return true;
