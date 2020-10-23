@@ -1,7 +1,7 @@
 #include <iostream>
 #include <sys/types.h>
-#include <unistd.h>
-#include <sys/wait.h>
+//#include <unistd.h>
+//#include <sys/wait.h>
 #include <stdio.h>
 #include <string.h>
 using namespace std;
@@ -32,7 +32,7 @@ int main()
     cout << cmd1[0] << cmd1[1] << endl;
     return 0;
 	
-	rs = pipe(pipefd);
+	/* rs = pipe(pipefd);
 	if (rs < 0)
 	{
 		perror("pipe");
@@ -52,7 +52,7 @@ int main()
 		close(pipefd[0]);
 		
         //execlp("wc", "wc", nullptr);
-        execv(cmd1[0].c_str, cmd1, nullptr);
+        execv(cmd1[0], cmd1, nullptr);
 	} else
 	{
 		//parent or error. output to be placed into child's input
@@ -64,7 +64,7 @@ int main()
 		close(pipefd[1]);
 		
 		//execlp("ls", "ls", nullptr);
-        execv(cmd2[0].c_str, cmd2, nullptr);
+        execv(cmd2[0], cmd2, nullptr);
         wait(nullptr); //wait for child to finish.
 	}
 	
@@ -72,6 +72,7 @@ int main()
 	
 	return 0;
 }
+*/
 
 bool parseCmd(string* cmds, string bulk)
 {
@@ -86,7 +87,7 @@ bool parseCmd(string* cmds, string bulk)
         cmds[counter] = pch;
         pch = strtok (NULL, " ");
         counter++;
-    }
+    } 
 
     return true;
 }
