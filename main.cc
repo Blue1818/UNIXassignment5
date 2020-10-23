@@ -52,7 +52,7 @@ int main()
 		// cout << "Caffeine is better than... zzzzzzzzz" << endl;
 		// wait(nullptr);
 
-        execlp("wc", "wc", nullptr)
+        execlp("wc", "wc", nullptr);
 	}
 	
 	
