@@ -95,10 +95,10 @@ bool parseCmd(string* cmds, string bulk)
     cmds[counter+1] = nullptr;
 
     //if quit is any of the commands, return false;
-    for(int i = 0; i < counter; i++)
+    /* for(int i = 0; i < counter; i++)
     {
         if (cmds[i] == "quit") return false;
-    }
+    } */
 
     return true;
 }
