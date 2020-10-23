@@ -1,8 +1,8 @@
 #!/bin/bash
 
-parseCmd () {
-
-}
+#parseCmd () {
+#    echo "hi"
+#}
 
 words=(word1 word2 word3)
 
