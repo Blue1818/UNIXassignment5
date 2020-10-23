@@ -92,7 +92,7 @@ bool parseCmd(string* cmds, string bulk)
         stream >> temp;
         cmds[i] = temp;
     }
-    cmds[counter+1] = nullptr;
+    //cmds[counter+1] = nullptr;
 
     //if quit is any of the commands, return false;
     /* for(int i = 0; i < counter; i++)
