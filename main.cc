@@ -53,6 +53,7 @@ int main()
 		// wait(nullptr);
 
         execlp("wc", "wc", nullptr);
+        wait(nullptr); //wait for child to finish.
 	}
 	
 	
