@@ -29,7 +29,7 @@ int main()
         return 0;
     }
 
-    for(int i = 0; (i < 25) && cmd1[i] != nullptr; i++) cout << cmd1[i] << endl;
+    for(int i = 0; (i < 25); i++) cout << cmd1[i] << endl;
     return 0;
 	
 	/* rs = pipe(pipefd);
