@@ -8,17 +8,24 @@ void parseCmd(string*, string);
 
 int main()
 {
+    //Variables:
 	string cmd1[25];
     string cmd2[25];
-
-    cout << "command1? ";
-    cin >> cmd1[0];
-    cout << "command1? ";
-    cin >> cmd2[0];
-	
-	int pipefd[2];
+    int pipefd[2];
 	int rs;
 	char buffer[256];
+
+    //Get commands from user.
+    cout << "command1? ";
+    getline(cin,cmd1[0]);
+    cout << "command1? ";
+    getline(cin,cmd2[0]);
+
+    cout << cmd1[0] << endl << cmd2[0] << endl;
+	
+    return 0;
+
+	
 	
 	rs = pipe(pipefd);
 	if (rs < 0)
