@@ -2,8 +2,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <sys/wait.h>
-#include <stdio.h>
-#include <string.h>
+#include <string>
+#include <sstream>
 using namespace std;
 
 //returns false if array contains quit
@@ -77,18 +77,23 @@ int main()
 bool parseCmd(string* cmds, string bulk)
 {
     //make last one nullptr.
-    //string temp = "";
-    char* pch;
-    int counter = 0;
-    char line[bulk.size()] = bulk.c_str();
+    istringstream stream;
 
-    pch = strtok (line," ");
-    while (pch != NULL)
+    stream.str(bulk);
+    int counter = 1;
+
+    for(int i = 0; i < bulk.length(); i++)
     {
-        cmds[counter] = pch;
-        pch = strtok (NULL, " ");
-        counter++;
-    } 
+        if (bulk.at(i) == ' ') counter++;
+    }
+
+    for(int i = 0; i < counter; i++)
+    {
+        stream << cmds[i];
+    }
+
+
+
 
     return true;
 }
