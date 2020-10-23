@@ -29,10 +29,8 @@ int main()
         return 0;
     }
 
-    //for(int i = 0; (i < 25); i++) cout << cmd1[i] << endl;
-    return 0;
 	
-	/* rs = pipe(pipefd);
+	rs = pipe(pipefd);
 	if (rs < 0)
 	{
 		perror("pipe");
@@ -52,7 +50,7 @@ int main()
 		close(pipefd[0]);
 		
         //execlp("wc", "wc", nullptr);
-        execv(cmd1[0], cmd1, nullptr);
+        exexlp(cmd1[0], cmd1, nullptr);
 	} else
 	{
 		//parent or error. output to be placed into child's input
@@ -64,13 +62,13 @@ int main()
 		close(pipefd[1]);
 		
 		//execlp("ls", "ls", nullptr);
-        execv(cmd2[0], cmd2, nullptr);
+        exexlp(cmd2[0], cmd2, nullptr);
         wait(nullptr); //wait for child to finish.
 	}
 	
 	
 	
-	return 0;*/
+	return 0;
 }
 
 
