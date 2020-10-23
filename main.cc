@@ -52,7 +52,7 @@ int main()
 		close(pipefd[0]);
 		
         //execlp("wc", "wc", nullptr);
-        execv(cmd1[0], cmd1, nullptr);
+        execv(cmd1[0].c_str, cmd1, nullptr);
 	} else
 	{
 		//parent or error. output to be placed into child's input
@@ -64,7 +64,7 @@ int main()
 		close(pipefd[1]);
 		
 		//execlp("ls", "ls", nullptr);
-        execv(cmd2[0], cmd2, nullptr);
+        execv(cmd2[0].c_str, cmd2, nullptr);
         wait(nullptr); //wait for child to finish.
 	}
 	
@@ -77,10 +77,10 @@ bool parseCmd(string* cmds, string bulk)
 {
     //make last one nullptr.
     //string temp = "";
-    char * pch;
+    char* pch;
     int counter = 0;
 
-    pch = strtok (bulk," ");
+    pch = strtok (bulk.c_str," ");
     while (pch != NULL)
     {
         cmds[counter] = pch;
