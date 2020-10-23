@@ -4,7 +4,8 @@
 #include <sys/wait.h>
 using namespace std;
 
-void parseCmd(string*, string);
+//returns false if array contains quit
+bool parseCmd(string*, string);
 
 int main()
 {
@@ -21,11 +22,10 @@ int main()
     cout << "command1? ";
     getline(cin,cmd2[0]);
 
-    cout << cmd1[0] << endl << cmd2[0] << endl;
-	
-    return 0;
-
-	
+    if ((parseCmd(cmd1, cmd1[0]) == false) || (parseCmd(cmd2, cmd2[0]) == false))
+    {
+        return 0;
+    }
 	
 	rs = pipe(pipefd);
 	if (rs < 0)
@@ -38,6 +38,7 @@ int main()
 	
 	if(pid == 0)
 	{
+        //child: receave input from parent's output
 		//close write end of pipe
 		close(pipefd[1]);
 		close(0);
@@ -45,10 +46,11 @@ int main()
 		dup(pipefd[0]);
 		close(pipefd[0]);
 		
-        execlp("wc", "wc", nullptr);
+        //execlp("wc", "wc", nullptr);
+        execv(, cmd1, nullptr);
 	} else
 	{
-		//parent or error
+		//parent or error. output to be placed into child's input
 		//close read end of pipe
 		close(pipefd[0]);
 		close(1); //standard output
@@ -65,7 +67,8 @@ int main()
 	return 0;
 }
 
-void parseCmd(string* cmds, string bulk)
+bool parseCmd(string* cmds, string bulk)
 {
+    //make last one nullptr.
 
 }
