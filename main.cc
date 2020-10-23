@@ -31,8 +31,10 @@ int main()
 		close(pipefd[0]);
 		
 		//child reads
-		ssize_t nr = read(0,  buffer, sizeof(buffer));
-		write(1, buffer, nr);
+		// ssize_t nr = read(0,  buffer, sizeof(buffer));
+		// write(1, buffer, nr);
+
+        execl("wc", "wc", nullptr);
 	} else
 	{
 		//parent or error
@@ -47,8 +49,10 @@ int main()
 		//parent writes
 		//write(1, "Hello", 6);
 		//now that the pipe is using standard output, you can use cout into pipe.
-		cout << "Caffeine is better than... zzzzzzzzz" << endl;
-		wait(nullptr);
+		// cout << "Caffeine is better than... zzzzzzzzz" << endl;
+		// wait(nullptr);
+
+        execlp("wc", "wc", nullptr)
 	}
 	
 	
