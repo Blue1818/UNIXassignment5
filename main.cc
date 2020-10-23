@@ -81,7 +81,7 @@ bool parseCmd(string* cmds, string bulk)
     char* pch;
     int counter = 0;
 
-    pch = strtok (bulk," ");
+    pch = strtok (bulk.c_str()," ");
     while (pch != NULL)
     {
         cmds[counter] = pch;
