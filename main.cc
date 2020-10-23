@@ -21,7 +21,7 @@ int main()
     //Get commands from user.
     cout << "command1? ";
     getline(cin,cmd1[0]);
-    cout << "command1? ";
+    cout << "command2? ";
     getline(cin,cmd2[0]);
 
     if ((parseCmd(cmd1, cmd1[0]) == false) || (parseCmd(cmd2, cmd2[0]) == false))
