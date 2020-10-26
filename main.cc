@@ -78,7 +78,7 @@ int main()
 		close(pipefd[0]);
 		
         //execlp("wc", "wc", nullptr);
-        execvp(cmd1Format[0], cmd1Format);
+        execvp(cmd1Format[0][0], cmd1Format);
 	} else
 	{
 		//parent or error. output to be placed into child's input
@@ -90,7 +90,7 @@ int main()
 		close(pipefd[1]);
 		
 		//execlp("ls", "ls", nullptr);
-        execvp(cmd2Format[0], cmd2Format);
+        execvp(cmd2Format[0][0], cmd2Format);
         wait(nullptr); //wait for child to finish.
 	}
 	
