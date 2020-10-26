@@ -23,12 +23,20 @@ int main()
     string cmd2[25];
     cmd2[24] = "endHere";
     char cmd1Format[25][255];
-    cmd1Format[24] = NULL;
+    //cmd1Format[24] = NULL;
     char cmd2Format[25][255];
-    cmd2Format[24] = NULL;
+    //cmd2Format[24] = NULL;
     int pipefd[2];
 	int rs;
 	char buffer[256];
+
+    char *x[25];
+    char *y[25];
+    for (int i = 0; i < 25; i++)
+    {
+        x[i] = nullptr;
+        y[i] = nullptr;
+    }
 
     //Get commands from user.
     cout << "command1? ";
@@ -47,21 +55,25 @@ int main()
         //cmd1Format[i] = cmd1[i].c_str();
         strcpy(cmd1Format[i], cmd1[i].c_str());
 
-        if (cmd1[i+1] == "endHere")
+        /* if (cmd1[i+1] == "endHere")
         {
-            cmd1Format[i+1] = NULL;
-        }
+            //cmd1Format[i+1] = NULL;
+            x[i+1] = nullptr;
+        } */
     }
 	for (int i = 0;(i < 25) && (cmd2[i] != "endHere"); i++)
     {
         //cmd2Format[i] = cmd2[i].c_str();
         strcpy(cmd2Format[i], cmd2[i].c_str());
 
-        if (cmd2[i+1] == "endHere")
+        /* if (cmd2[i+1] == "endHere")
         {
-            cmd2Format[i+1] = NULL;
-        }
+            //cmd2Format[i+1] = NULL;
+            x[i+1] = nullptr;
+        } */
     }
+    for (int i = 0; cmd1[i] != "endHere"; i++) x[i] = cmd1Format[i];
+    for (int i = 0; cmd2[i] != "endHere"; i++) y[i] = cmd2Format[i];
 
 	rs = pipe(pipefd);
 	if (rs < 0)
@@ -83,7 +95,7 @@ int main()
 		close(pipefd[0]);
 		
         //execlp("wc", "wc", nullptr);
-        execvp(cmd1Format[0], cmd1Format);
+        execvp(cmd1Format[0], x);
 	} else
 	{
 		//parent or error. output to be placed into child's input
@@ -95,7 +107,7 @@ int main()
 		close(pipefd[1]);
 		
 		//execlp("ls", "ls", nullptr);
-        execvp(cmd2Format[0], cmd2Format);
+        execvp(cmd2Format[0], y);
         wait(nullptr); //wait for child to finish.
 	}
 	
