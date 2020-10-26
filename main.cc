@@ -1,3 +1,8 @@
+/*	Dale Westberg z1910234
+	CSCI 330
+	Assignment #3
+	9/18/20
+*/
 #include <iostream>
 #include <sys/types.h>
 #include <unistd.h>
