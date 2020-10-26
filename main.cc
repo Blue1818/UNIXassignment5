@@ -7,13 +7,13 @@
 using namespace std;
 
 //returns false if array contains quit
-bool parseCmd(string*, string);
+bool parseCmd(char*[], char*);
 
 int main()
 {
     //Variables:
-	string cmd1[25];
-    string cmd2[25];
+	char cmd1[25][25];
+    char cmd2[25][25];
     int pipefd[2];
 	int rs;
 	char buffer[256];
@@ -72,11 +72,11 @@ int main()
 }
 
 
-bool parseCmd(string* cmds, string bulk)
+bool parseCmd(char* cmds[], char* bulk)
 {
     //make last one nullptr.
     istringstream stream;
-    string temp = "";
+    char temp = "";
     stream.str(bulk);
     int counter = 1;
 
