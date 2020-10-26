@@ -4,6 +4,7 @@
 #include <sys/wait.h>
 #include <string>
 #include <sstream>
+#include <cstring>
 using namespace std;
 
 //returns false if array contains quit
