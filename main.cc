@@ -17,9 +17,9 @@ int main()
     string cmd2[25];
     cmd2[24] = "endHere";
     char cmd1Format[25][255];
-    cmd1Format[24] = nullptr;
+    cmd1Format[24][0] = nullptr;
     char cmd2Format[25][255];
-    cmd2Format[24] = nullptr;
+    cmd2Format[24][0] = nullptr;
     int pipefd[2];
 	int rs;
 	char buffer[256];
@@ -38,7 +38,8 @@ int main()
     //Turn string arrays into c_str arrays.
     for (int i = 0;(i < 25) && (cmd1[i] != "endHere"); i++)
     {
-        cmd1Format[i] = cmd1[i].c_str();
+        //cmd1Format[i] = cmd1[i].c_str();
+
 
         if (cmd1[i+1] == "endHere")
         {
