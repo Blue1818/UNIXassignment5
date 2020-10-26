@@ -7,13 +7,13 @@
 using namespace std;
 
 //returns false if array contains quit
-bool parseCmd(char*[], char);
+bool parseCmd(string*, string);
 
 int main()
 {
     //Variables:
-	char cmd1[25][255];
-    char cmd2[25][255];
+	string cmd1[25];
+    string cmd2[25];
     int pipefd[2];
 	int rs;
 	char buffer[256];
@@ -50,7 +50,7 @@ int main()
 		close(pipefd[0]);
 		
         //execlp("wc", "wc", nullptr);
-        execvp(cmd1[0].c_str(), cmd1);
+        execv(cmd1[0].c_str, cmd1, nullptr);
 	} else
 	{
 		//parent or error. output to be placed into child's input
@@ -62,7 +62,7 @@ int main()
 		close(pipefd[1]);
 		
 		//execlp("ls", "ls", nullptr);
-        execvp(cmd2[0].c_str(), cmd2);
+        execvp(cmd2[0], cmd2, nullptr);
         wait(nullptr); //wait for child to finish.
 	}
 	
@@ -72,11 +72,11 @@ int main()
 }
 
 
-bool parseCmd(char* cmds[], char bulk)
+bool parseCmd(string* cmds, string bulk)
 {
     //make last one nullptr.
     istringstream stream;
-    char temp = "";
+    string temp = "";
     stream.str(bulk);
     int counter = 1;
 
@@ -100,5 +100,4 @@ bool parseCmd(char* cmds[], char bulk)
     }
 
     return true;
-    //put nullptr at end of array
 }
