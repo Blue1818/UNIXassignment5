@@ -7,7 +7,7 @@
 using namespace std;
 
 //returns false if array contains quit
-bool parseCmd(char*[], char*);
+bool parseCmd(char*[], char);
 
 int main()
 {
