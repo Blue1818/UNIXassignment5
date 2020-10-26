@@ -62,7 +62,7 @@ int main()
 		close(pipefd[1]);
 		
 		//execlp("ls", "ls", nullptr);
-        execvp(cmd2[0], cmd2, nullptr);
+        execv(cmd2[0].c_str, cmd2, nullptr);
         wait(nullptr); //wait for child to finish.
 	}
 	
