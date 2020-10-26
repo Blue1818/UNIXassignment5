@@ -40,7 +40,7 @@ int main()
     for (int i = 0;(i < 25) && (cmd1[i] != "endHere"); i++)
     {
         //cmd1Format[i] = cmd1[i].c_str();
-        strcpy(cmd1Format[i], cmd1[i].c_str())
+        strcpy(cmd1Format[i], cmd1[i].c_str());
 
         if (cmd1[i+1] == "endHere")
         {
@@ -50,7 +50,7 @@ int main()
 	for (int i = 0;(i < 25) && (cmd2[i] != "endHere"); i++)
     {
         //cmd2Format[i] = cmd2[i].c_str();
-        strcpy(cmd2Format[i], cmd2[i].c_str())
+        strcpy(cmd2Format[i], cmd2[i].c_str());
 
         if (cmd2[i+1] == "endHere")
         {
