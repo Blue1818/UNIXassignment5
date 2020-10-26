@@ -12,8 +12,8 @@ bool parseCmd(char*[], char*);
 int main()
 {
     //Variables:
-	char cmd1[25][25];
-    char cmd2[25][25];
+	char cmd1[25][255];
+    char cmd2[25][255];
     int pipefd[2];
 	int rs;
 	char buffer[256];
@@ -50,7 +50,7 @@ int main()
 		close(pipefd[0]);
 		
         //execlp("wc", "wc", nullptr);
-        execvp(cmd1[0].c_str(), cmd1, nullptr);
+        execvp(cmd1[0].c_str(), cmd1);
 	} else
 	{
 		//parent or error. output to be placed into child's input
@@ -62,7 +62,7 @@ int main()
 		close(pipefd[1]);
 		
 		//execlp("ls", "ls", nullptr);
-        execvp(cmd2[0].c_str(), cmd2, nullptr);
+        execvp(cmd2[0].c_str(), cmd2);
         wait(nullptr); //wait for child to finish.
 	}
 	
@@ -72,7 +72,7 @@ int main()
 }
 
 
-bool parseCmd(char* cmds[], char* bulk)
+bool parseCmd(char* cmds[], char bulk)
 {
     //make last one nullptr.
     istringstream stream;
@@ -100,4 +100,5 @@ bool parseCmd(char* cmds[], char* bulk)
     }
 
     return true;
+    //put nullptr at end of array
 }
