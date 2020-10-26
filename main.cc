@@ -7,13 +7,19 @@
 using namespace std;
 
 //returns false if array contains quit
-bool parseCmd(char*[], char);
+bool parseCmd(string*, string);
 
 int main()
 {
     //Variables:
-	char cmd1[25][255];
-    char cmd2[25][255];
+	string cmd1[25];
+    cmd1[24] = "endHere";
+    string cmd2[25];
+    cmd2[24] = "endHere";
+    char cmd1Format[25][255];
+    cmd1Format[24] = nullptr;
+    char cmd2Format[25][255];
+    cmd2Format[24] = nullptr;
     int pipefd[2];
 	int rs;
 	char buffer[256];
@@ -29,7 +35,26 @@ int main()
         return 0;
     }
 
-	
+    //Turn string arrays into c_str arrays.
+    for (int i = 0;(i < 25) && (cmd1[i] != "endHere"); i++)
+    {
+        cmd1Format[i] = cmd1[i].c_str();
+
+        if (cmd1[i+1] == "endHere")
+        {
+            cmd1Format[i+1] = nullptr;
+        }
+    }
+	for (int i = 0;(i < 25) && (cmd2[i] != "endHere"); i++)
+    {
+        cmd2Format[i] = cmd2[i].c_str();
+
+        if (cmd2[i+1] == "endHere")
+        {
+            cmd2Format[i+1] = nullptr;
+        }
+    }
+
 	rs = pipe(pipefd);
 	if (rs < 0)
 	{
@@ -50,7 +75,7 @@ int main()
 		close(pipefd[0]);
 		
         //execlp("wc", "wc", nullptr);
-        execvp(cmd1[0].c_str(), cmd1);
+        execvp(cmd1Format[0], cmd1Format);
 	} else
 	{
 		//parent or error. output to be placed into child's input
@@ -62,7 +87,7 @@ int main()
 		close(pipefd[1]);
 		
 		//execlp("ls", "ls", nullptr);
-        execvp(cmd2[0].c_str(), cmd2);
+        execvp(cmd2Format[0], cmd2Format);
         wait(nullptr); //wait for child to finish.
 	}
 	
@@ -72,11 +97,11 @@ int main()
 }
 
 
-bool parseCmd(char* cmds[], char bulk)
+bool parseCmd(string* cmds, string bulk)
 {
     //make last one nullptr.
     istringstream stream;
-    char temp = "";
+    string temp = "";
     stream.str(bulk);
     int counter = 1;
 
@@ -92,6 +117,8 @@ bool parseCmd(char* cmds[], char bulk)
     }
     //this keeps comming up as segmentation fault
     //cmds[counter] = nullptr;
+    //Mark end of array;
+    cmds[counter] = "endHere";
 
     //if quit is any of the commands, return false;
      for(int i = 0; i < counter; i++)
@@ -100,5 +127,4 @@ bool parseCmd(char* cmds[], char bulk)
     }
 
     return true;
-    //put nullptr at end of array
 }
