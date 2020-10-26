@@ -18,9 +18,9 @@ int main()
     string cmd2[25];
     cmd2[24] = "endHere";
     char cmd1Format[25][255];
-    cmd1Format[24][0] = nullptr;
+    cmd1Format[24][0] = '\0';
     char cmd2Format[25][255];
-    cmd2Format[24][0] = nullptr;
+    cmd2Format[24][0] = '\0';
     int pipefd[2];
 	int rs;
 	char buffer[256];
@@ -44,7 +44,7 @@ int main()
 
         if (cmd1[i+1] == "endHere")
         {
-            cmd1Format[i+1][0] = nullptr;
+            cmd1Format[i+1][0] = '\0';
         }
     }
 	for (int i = 0;(i < 25) && (cmd2[i] != "endHere"); i++)
@@ -54,7 +54,7 @@ int main()
 
         if (cmd2[i+1] == "endHere")
         {
-            cmd2Format[i+1][0] = nullptr;
+            cmd2Format[i+1][0] = '\0';
         }
     }
 
