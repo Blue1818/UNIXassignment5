@@ -19,7 +19,7 @@ bool driver();
 
 int main()
 {
-    bool flag;
+    bool flag = true;
     while (flag == true) flag = driver();
 
     return 0;
