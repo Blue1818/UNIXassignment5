@@ -21,6 +21,7 @@ int main()
 {
     bool flag = true;
     while (flag == true) flag = driver();
+    cout << "after loop" << flag << endl;
 
     return 0;
 }
