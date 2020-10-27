@@ -29,7 +29,7 @@ int main()
     char *x[25];
     char *y[25];
 
-    while ()
+    while (true)
     {
         cmd1[24] = "endHere";
         cmd2[24] = "endHere";
