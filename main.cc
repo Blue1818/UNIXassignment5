@@ -15,6 +15,7 @@ using namespace std;
 //returns false if array contains quit
 bool parseCmd(string*, string);
 
+bool driver();
 
 int main()
 {
