@@ -19,9 +19,7 @@ int main()
 {
     //Variables:
 	string cmd1[25];
-    cmd1[24] = "endHere";
     string cmd2[25];
-    cmd2[24] = "endHere";
     char cmd1Format[25][255];
     char cmd2Format[25][255];
     int pipefd[2];
@@ -33,6 +31,8 @@ int main()
 
     while ()
     {
+        cmd1[24] = "endHere";
+        cmd2[24] = "endHere";
         for (int i = 0; i < 25; i++)
         {
             x[i] = nullptr;
@@ -53,25 +53,11 @@ int main()
         //Turn string arrays into c_str arrays.
         for (int i = 0;(i < 25) && (cmd1[i] != "endHere"); i++)
         {
-            //cmd1Format[i] = cmd1[i].c_str();
             strcpy(cmd1Format[i], cmd1[i].c_str());
-
-            /* if (cmd1[i+1] == "endHere")
-            {
-                //cmd1Format[i+1] = NULL;
-                x[i+1] = nullptr;
-            } */
         }
         for (int i = 0;(i < 25) && (cmd2[i] != "endHere"); i++)
         {
-            //cmd2Format[i] = cmd2[i].c_str();
             strcpy(cmd2Format[i], cmd2[i].c_str());
-
-            /* if (cmd2[i+1] == "endHere")
-            {
-                //cmd2Format[i+1] = NULL;
-                x[i+1] = nullptr;
-            } */
         }
         for (int i = 0; cmd1[i] != "endHere"; i++) x[i] = cmd1Format[i];
         for (int i = 0; cmd2[i] != "endHere"; i++) y[i] = cmd2Format[i];
@@ -94,8 +80,7 @@ int main()
             //duplicate read end of pip to standard input file discriptor.
             dup(pipefd[0]);
             close(pipefd[0]);
-            
-            //execlp("wc", "wc", nullptr);
+        
             execvp(cmd2Format[0], x);
         } else
         {
@@ -107,7 +92,6 @@ int main()
             dup(pipefd[1]);
             close(pipefd[1]);
             
-            //execlp("ls", "ls", nullptr);
             execvp(cmd1Format[0], y);
             wait(nullptr); //wait for child to finish.
         }
