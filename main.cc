@@ -29,6 +29,7 @@ int main()
 
 bool driver()
 {
+    cout << "start" << endl;
     //Variables:
 	string cmd1[25];
     string cmd2[25];
