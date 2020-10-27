@@ -15,7 +15,17 @@ using namespace std;
 //returns false if array contains quit
 bool parseCmd(string*, string);
 
+
 int main()
+{
+    bool flag;
+    while (flag == true) flag = driver();
+
+    return 0;
+}
+
+
+bool driver()
 {
     //Variables:
 	string cmd1[25];
@@ -29,8 +39,7 @@ int main()
     char *x[25];
     char *y[25];
 
-    while (1 == 1)
-    {
+    
         cmd1[24] = "endHere";
         cmd2[24] = "endHere";
         for (int i = 0; i < 25; i++)
@@ -47,7 +56,7 @@ int main()
 
         if ((parseCmd(cmd1, cmd1[0]) == false) || (parseCmd(cmd2, cmd2[0]) == false))
         {
-            return 0;
+            return false;
         }
 
         //Turn string arrays into c_str arrays.
@@ -95,10 +104,10 @@ int main()
             execvp(cmd1Format[0], y);
             wait(nullptr); //wait for child to finish.
         }
-    }
+    
 	
 	
-	return 0;
+	return true;
 }
 
 
