@@ -41,8 +41,8 @@ bool driver()
     char *y[25];
 
     
-        cmd1[24] = "endHere";
-        cmd2[24] = "endHere";
+        cmd1[24] = "";
+        cmd2[24] = "";
         for (int i = 0; i < 25; i++)
         {
             x[i] = nullptr;
@@ -61,16 +61,16 @@ bool driver()
         }
 
         //Turn string arrays into c_str arrays.
-        for (int i = 0;(i < 25) && (cmd1[i] != "endHere"); i++)
+        for (int i = 0;(i < 25) && (cmd1[i] != ""); i++)
         {
             strcpy(cmd1Format[i], cmd1[i].c_str());
         }
-        for (int i = 0;(i < 25) && (cmd2[i] != "endHere"); i++)
+        for (int i = 0;(i < 25) && (cmd2[i] != ""); i++)
         {
             strcpy(cmd2Format[i], cmd2[i].c_str());
         }
-        for (int i = 0; cmd1[i] != "endHere"; i++) x[i] = cmd1Format[i];
-        for (int i = 0; cmd2[i] != "endHere"; i++) y[i] = cmd2Format[i];
+        for (int i = 0; cmd1[i] != ""; i++) x[i] = cmd1Format[i];
+        for (int i = 0; cmd2[i] != ""; i++) y[i] = cmd2Format[i];
 
         rs = pipe(pipefd);
         if (rs < 0)
@@ -131,7 +131,7 @@ bool parseCmd(string* cmds, string bulk)
         cmds[i] = temp;
     }
     //Mark end of array;
-    cmds[counter] = "endHere";
+    cmds[counter] = "";
 
     //if quit is any of the commands, return false;
      for(int i = 0; i < counter; i++)
