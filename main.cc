@@ -21,7 +21,6 @@ int main()
 {
     bool flag = true;
     while (flag == true) flag = driver();
-    cout << "after loop" << flag << endl;
 
     return 0;
 }
@@ -29,7 +28,6 @@ int main()
 
 bool driver()
 {
-    cout << "start" << endl;
     //Variables:
 	string cmd1[25];
     string cmd2[25];
