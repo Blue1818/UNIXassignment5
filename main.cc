@@ -35,6 +35,8 @@ bool driver()
     char cmd2Format[25][255];
     int pipefd[2];
 	int rs;
+    int rss;
+    int status;
 	char buffer[256];
     pid_t pid;
     char *x[25];
@@ -80,7 +82,11 @@ bool driver()
         }
         
         pid = fork();
-        
+        if (pid == (-1))
+        {
+            perror("fork");
+            exit(pid);
+        }
         if(pid == 0)
         {
             //child: receave input from parent's output
@@ -91,7 +97,12 @@ bool driver()
             dup(pipefd[0]);
             close(pipefd[0]);
         
-            execvp(cmd2Format[0], x);
+            rss = execvp(cmd2Format[0], x);
+            if (rss == (-1))
+            {
+                perror("execvp");
+                exit(rss);
+            }
         } else
         {
             //parent or error. output to be placed into child's input
@@ -102,7 +113,12 @@ bool driver()
             dup(pipefd[1]);
             close(pipefd[1]);
             
-            execvp(cmd1Format[0], y);
+            rss =  execvp(cmd1Format[0], y);
+            if (rss == (-1))
+            {
+                perror("execvp");
+                exit(rss);
+            }
             wait(nullptr); //wait for child to finish.
         }
     
